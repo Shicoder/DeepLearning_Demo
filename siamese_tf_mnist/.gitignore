@@ -1,0 +1,7 @@
+MNIST_data/
+checkpoint
+embed.txt
+*.ckpt
+*.meta
+*.pyc
+*.*~
