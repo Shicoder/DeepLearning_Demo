@@ -1,10 +1,9 @@
 import numpy as np
 import pylab
-
 def compute_error(b,m,data):
-    #initial it at 0
+    
     totalError = 0
-    #for every point
+
     for i in range(0,len(data)):
         x = data[i,0]
         y = data[i,1]
@@ -19,7 +18,6 @@ def optimizer(data,starting_b,starting_m,learning_rate,num_iter):
 
     #gradient descent
     for i in range(num_iter):
-        #update b and m with the new more accurate b and m by performing
         # thie gradient step
         b,m =step_gradient(b,m,data,learning_rate)
         if i%100==0:
@@ -28,7 +26,6 @@ def optimizer(data,starting_b,starting_m,learning_rate,num_iter):
 
 def step_gradient(b_current,m_current,data ,learning_rate):
 
-    #starting points for out gradients
     b_gradient = 0
     m_gradient = 0
 
@@ -38,7 +35,7 @@ def step_gradient(b_current,m_current,data ,learning_rate):
         x = data[i,0]
         y = data[i,1]
 
-        #computing partial derivations of our error function
+        #computing partial derivations of error function
         #b_gradient = -(2/N)*sum((y-(m*x+b))^2)
         #m_gradient = -(2/N)*sum(x*(y-(m*x+b))^2)
         b_gradient += -(2/N)*(y-((m_current*x)+b_current))
@@ -63,10 +60,10 @@ def plot_data(data,b,m):
 
 
 def Linear_regression():
-    #step 1 get train data
+    # get train data
     data =np.loadtxt('./data/data.csv',delimiter=',')
 
-    #step 2 define hyperparamters
+    # define hyperparamters
     #learning_rate is used for update gradient
     learning_rate = 0.001
 
@@ -77,7 +74,7 @@ def Linear_regression():
     #defint the number that will iteration
     num_iter = 1000
 
-    #step 3 train model
+    # train model
     #print b m error
     print 'initial variables:\n initial_b = {0}\n intial_m = {1}\n error of begin = {2} \n'\
         .format(initial_b,initial_m,compute_error(initial_b,initial_m,data))
